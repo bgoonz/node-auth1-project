@@ -1,28 +1,25 @@
-const db = require('../../data/db-config');
-const bcrypt = require('bcryptjs');
+const db = require("../../data/db-config");
+const bcrypt = require("bcryptjs");
 
 /**
   resolves to an ARRAY with all users, each user having { user_id, username }
  */
 async function find() {
-  return await db('users');
+  return await db("users");
 }
 
 /**
   resolves to an ARRAY with all users that match the filter condition
  */
 function findBy(filter) {
-  return db('users')
-    .where( filter );
+  return db("users").where(filter);
 }
 
 /**
   resolves to the user { user_id, username } with the given user_id
  */
 async function findById(user_id) {
-  return await db('users')
-    .where({ user_id})
-    .first();
+  return await db("users").where({ user_id }).first();
 }
 
 /**
@@ -32,7 +29,7 @@ async function add(user) {
   const pwdHash = bcrypt.hashSync(user.password, 12);
   user.password = pwdHash;
 
-  const user_id = await db('users').insert(user);
+  const user_id = await db("users").insert(user);
   return findById(user_id);
 }
 
@@ -41,5 +38,5 @@ module.exports = {
   find,
   findBy,
   findById,
-  add
-}
+  add,
+};

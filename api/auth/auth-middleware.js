@@ -1,4 +1,4 @@
-const users = require('../users/users-model')
+const users = require("../users/users-model");
 
 /*
   If the user does not have a session saved in the server
@@ -14,9 +14,9 @@ function restricted(req, res, next) {
   if (token) {
     next();
   } else {
-    res.status(401).json({ 
+    res.status(401).json({
       message: "You shall not pass!",
-  });
+    });
   }
 }
 
@@ -30,13 +30,13 @@ function restricted(req, res, next) {
 */
 async function checkUsernameFree(req, res, next) {
   const { username } = req.body;
-  const exists = await users.findBy({username: username}).first();
+  const exists = await users.findBy({ username: username }).first();
 
   if (!exists) {
     next();
   } else {
-    res.status(422).json({ 
-      message: "Username taken"
+    res.status(422).json({
+      message: "Username taken",
     });
   }
 }
@@ -51,7 +51,7 @@ async function checkUsernameFree(req, res, next) {
 */
 async function checkUsernameExists(req, res, next) {
   const { username } = req.body;
-  const exists = await users.findBy({username: username}).first();
+  const exists = await users.findBy({ username: username }).first();
 
   if (exists) {
     req.user = exists;
@@ -72,9 +72,8 @@ async function checkUsernameExists(req, res, next) {
 function checkPasswordLength(req, res, next) {
   const { password } = req.body;
 
-  if (password && typeof(password) === "string"
-    && password.length > 3) {
-      next();
+  if (password && typeof password === "string" && password.length > 3) {
+    next();
   } else {
     res.status(422).json({ message: "Password must be longer than 3 chars" });
   }
@@ -85,5 +84,5 @@ module.exports = {
   restricted,
   checkPasswordLength,
   checkUsernameExists,
-  checkUsernameFree
-}
+  checkUsernameFree,
+};

@@ -11,6 +11,7 @@ Use `Node.js`, `Express` and `Knex` to build an API that provides register, logi
 There are two possible ways to submit your project. Your instructor should have communicated which method to use for this project during the Guided Project and in your cohort's Slack channel. If you are still unsure, reach out to Lambda Staff.
 
 #### Option A - Codegrade
+
 - [x] Fork and clone the repository.
 - [x] Open the assignment in Canvas and click on the "Set up git" option.
 - [x] Follow instructions to set up Codegrade's Webhook and Deploy Key.
